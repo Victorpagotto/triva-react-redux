@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import propTypes from 'prop-types';
 import getToken from '../0-Services/tokenAPI';
 import LoadingPage from '../Components/LoadingPage';
@@ -72,6 +73,14 @@ class Login extends Component {
                 Play
 
               </button>
+              <Link to="/Settings">
+                <button
+                  type="button"
+                  data-testid="btn-settings"
+                >
+                  Settings
+                </button>
+              </Link>
             </form>
           </section>
         </div>
