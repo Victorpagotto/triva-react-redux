@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
 class Login extends Component {
   state =
@@ -54,6 +55,18 @@ class Login extends Component {
               Play
 
             </button>
+
+            <Link to="/Settings">
+              <button
+                type="button"
+                data-testid="btn-settings"
+              >
+                Settings
+
+              </button>
+
+            </Link>
+
           </form>
         </div>
       );
