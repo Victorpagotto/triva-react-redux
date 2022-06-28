@@ -1,0 +1,12 @@
+.loading-compónent {
+  align-items: center;
+  background-color: #282c34;
+  color: white;
+  display: flex;
+  font-size: 4em;
+  height: 100vh;
+  justify-content: center;
+  margin: 0;
+  padding: -1;
+  width: 100%;
+}
