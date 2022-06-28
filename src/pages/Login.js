@@ -7,31 +7,21 @@ class Login extends Component {
       // assertions: '',
       // score: '',
       gravatarEmail: '',
-      isDisable: true,
     }
 
     handleChange = ({ target }) => {
-      const { name, value } = target;
+      const { value } = target;
+
       this.setState({
-        [name]: value,
+        [target.name]: value,
       });
     }
 
     handleClick = () => {
-      const { name, gravatarEmail } = this.state;
-      if (!name && !gravatarEmail) {
-        this.setState({
-          isDisable: false,
-        });
-      } else {
-        this.setState({
-          isDisable: true,
-        });
-      }
     }
 
     render() {
-      const { isDisable } = this.state;
+      const { name, gravatarEmail } = this.state;
       return (
         <div>
           <form>
@@ -58,7 +48,7 @@ class Login extends Component {
             <button
               type="button"
               data-testid="btn-play"
-              disabled={ isDisable }
+              disabled={ (name === '' || gravatarEmail === '') }
               onClick={ this.handleClick }
             >
               Play
