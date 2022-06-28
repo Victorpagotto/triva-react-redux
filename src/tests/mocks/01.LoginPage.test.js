@@ -1,11 +1,11 @@
 import React from "react";
-import App from "../../../App";
-import {renderWithRouterAndRedux} from "../renderWithRouterAndRedux"
-import {screen} from '@testing-library/react'
+import App from "../../App";
+import {renderWithRouterAndRedux} from "../helpers/renderWithRouterAndRedux"
+import {screen, waitFor} from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 
 describe('Testes da página de Login', () => {
-    it('Crie a tela de login, onde a pessoa que joga deve preencher as informações para iniciar um jogo', () => {
+    it('Crie a tela de login, onde a pessoa que joga deve preencher as informações para iniciar um jogo', async () => {
         const { history, getByTestId } = renderWithRouterAndRedux(<App />)
 
         const tokenMock = {
@@ -13,10 +13,9 @@ describe('Testes da página de Login', () => {
           response_message:"Token Generated Successfully!",
           token:"f00cb469ce38726ee00a7c6836761b0a4fb808181a125dcde6d50a9f3c9127b6"
         };
-
-        global.fetch = jest.fn().mockImplementation(() => ({
+        global.fetch = jest.fn().mockResolvedValue({
           json: jest.fn().mockResolvedValue(tokenMock),
-        }))
+        });
         Storage.prototype.setItem = jest.fn();
         expect(history.location.pathname).toBe('/');
         const inputName = screen.getByTestId('input-player-name');
@@ -33,7 +32,7 @@ describe('Testes da página de Login', () => {
         expect(inputEmail.value).toBe('teste@gmail.com');
         expect(inputName.value).toBe('Trybe');
         userEvent.click(btnPlay);
-        expect(localStorage.setItem).toHaveBeenCalled();
+        await waitFor(() => expect(localStorage.setItem).toHaveBeenCalled());
         expect(history.location.pathname).not.toBe('/');
     })
 })
