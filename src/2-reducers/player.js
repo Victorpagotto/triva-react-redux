@@ -2,7 +2,7 @@ const initial = {
   name: '', // nome-da-pessoa
   assertions: 0, // número-de-acertos
   score: 0, // pontuação
-  gravatarEmail: 11, // email-da-pessoa
+  gravatarEmail: '', // email-da-pessoa
 };
 
 const player = (state = initial, action) => {
@@ -16,7 +16,7 @@ const player = (state = initial, action) => {
   case 'GRAVATAR_EMAIL':
     return { ...state, gravatarEmail: action.info };
   default:
-    break;
+    return state;
   }
 };
 
