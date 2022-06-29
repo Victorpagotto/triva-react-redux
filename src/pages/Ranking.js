@@ -9,7 +9,7 @@ class Ranking extends React.Component {
         <h1>Ranking</h1>
         <RankingPlayers />
 
-        <Link to="/Login">
+        <Link to="/">
           <button
             type="button"
             data-testid="btn-go-home"
