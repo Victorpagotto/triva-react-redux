@@ -1,33 +1,36 @@
 import React, { Component } from 'react';
+import gravatar from '../0-Services/gravatarAPI';
 
 class RankingPlayers extends Component {
-  render() {
-    return (
-      <div>
+getPlayers = () => {
+  const players = JSON.parse(localStorage.getItem('user'));
+  if (players !== null) {
+    return players;
+  }
+  return [];
+}
+
+render() {
+  const arr = this.getPlayers().sort((a, b) => b.score - a.score);
+  return (
+    <div>
+      {arr.map((player, index) => (
         <div
           key={ index }
         >
           <img
             data-testid="header-profile-picture"
-            src={ `https://www.gravatar.com/avatar/${hash}` }
-            alt={ players.name }
+            src={ gravatar.getImage(player.gravatarEmail) }
+            alt={ player.name }
           />
-          <h3>{players.name}</h3>
-          <h3>{players.score}</h3>
+          <h3 data-testid={ `player-name-${index}` }>{player.name}</h3>
+          <h3 data-testid={ `player-score-${index}` }>{player.score}</h3>
         </div>
+      ))}
 
-      </div>
-    );
-  }
+    </div>
+  );
+}
 }
 
-RankingPlayers.propTypes = {
-  player: PropTypes.shape({
-    map: PropTypes.func.isRequired,
-    name: PropTypes.string.isRequired,
-    score: PropTypes.number.isRequired,
-    gravatarEmail: PropTypes.string.isRequired,
-  }).isRequired,
-};
-
-export default connect(mapStateToProps)(RankingPlayers);
+export default RankingPlayers;
