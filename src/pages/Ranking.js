@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import RankingPlayers from '../Components/RankingPlayers';
 
@@ -24,12 +23,12 @@ class Ranking extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  name: state.player.name,
-  assertions: state.player.assertions,
-  score: state.player.score,
-  gravatarEmail: state.player.gravatarEmail,
-});
+// const mapStateToProps = (state) => ({
+//   name: state.player.name,
+//   assertions: state.player.assertions,
+//   score: state.player.score,
+//   gravatarEmail: state.player.gravatarEmail,
+// });
 
 // Ranking.propTypes = {
 //   name: PropTypes.string.isRequired,
@@ -37,4 +36,4 @@ const mapStateToProps = (state) => ({
 //   gravatarEmail: PropTypes.string.isRequired,
 // };
 
-export default connect(mapStateToProps)(Ranking);
+export default Ranking;
