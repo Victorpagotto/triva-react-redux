@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import propTypes from 'prop-types';
-import GameHeader from '../Components/GameHeader';
+import Header from '../Components/Header';
 
 class Feedback extends React.Component {
   render() {
@@ -9,7 +9,7 @@ class Feedback extends React.Component {
     const RATE = 3;
     return (
       <div>
-        <GameHeader />
+        <Header />
         <div>
           <p data-testid="feedback-text">
             {
