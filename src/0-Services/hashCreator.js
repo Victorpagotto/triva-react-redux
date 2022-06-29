@@ -1,1 +1,1 @@
-// Função para manejar a hash do gravatar.
+// Função para manejar a hash do gravatar
