@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 const mapStateToProps = (state) => ({ player: state.player });
 
-class GameHeader extends Component {
+class Header extends Component {
   render() {
     const { player: { name, score, gravatarEmail } } = this.props;
     const hash = md5(gravatarEmail).toString();
@@ -22,11 +22,11 @@ class GameHeader extends Component {
     );
   }
 }
-GameHeader.propTypes = {
+Header.propTypes = {
   player: PropTypes.shape({
     name: PropTypes.string.isRequired,
     score: PropTypes.number.isRequired,
     gravatarEmail: PropTypes.string.isRequired,
   }).isRequired,
 };
-export default connect(mapStateToProps, null)(GameHeader);
+export default connect(mapStateToProps, null)(Header);
