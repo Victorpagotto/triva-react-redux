@@ -11,9 +11,10 @@ getPlayers = () => {
 }
 
 render() {
+  const arr = this.getPlayers().sort((a, b) => b.score - a.score);
   return (
     <div>
-      {(this.getPlayers().sort((a, b) => b - a)).map((player, index) => (
+      {arr.map((player, index) => (
         <div
           key={ index }
         >
