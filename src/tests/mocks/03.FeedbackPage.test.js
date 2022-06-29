@@ -6,7 +6,6 @@ import { cleanup } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 describe('Testa a página de feedback', () => {
-
   const initialState = (assert, score) => ({
     player: {
       name: 'TestName', // nome-da-pessoa
