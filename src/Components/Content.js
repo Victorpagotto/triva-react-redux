@@ -4,6 +4,7 @@ import Game from '../pages/Game';
 import Login from '../pages/Login';
 import Settings from '../pages/Settings';
 import Ranking from '../pages/Ranking';
+import Feedback from '../pages/Feedback';
 
 class Content extends React.Component {
   render() {
@@ -14,6 +15,7 @@ class Content extends React.Component {
         <Route path="/Settings" component={ Settings } />
         <Route path="/Ranking" component={ Ranking } />
         <Route path="/game" component={ Game } />
+        <Route path="/feedback" component={ Feedback } />
       </Switch>
 
     );
