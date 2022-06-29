@@ -1,17 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 
 class Ranking extends React.Component {
   render() {
-    const { name, score } = this.props;
     return (
       <div>
         <h1>Ranking</h1>
-        <img src="" alt="Imagem do Jogador" />
-        <h3 data-testid="player-name">{name}</h3>
-        <h3 data-testid="player-score">{score}</h3>
 
         <Link to="/Login">
           <button
@@ -34,9 +29,10 @@ const mapStateToProps = (state) => ({
   gravatarEmail: state.player.gravatarEmail,
 });
 
-Ranking.propTypes = {
-  name: PropTypes.string.isRequired,
-  score: PropTypes.bool.isRequired,
-};
+// Ranking.propTypes = {
+//   name: PropTypes.string.isRequired,
+//   score: PropTypes.bool.isRequired,
+//   gravatarEmail: PropTypes.string.isRequired,
+// };
 
 export default connect(mapStateToProps)(Ranking);
