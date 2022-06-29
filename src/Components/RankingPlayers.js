@@ -3,8 +3,9 @@ import gravatar from '../0-Services/gravatarAPI';
 
 class RankingPlayers extends Component {
 getPlayers = () => {
-  if (localStorage.user !== undefined) {
-    return JSON.parse(localStorage.getItem('user'));
+  const players = JSON.parse(localStorage.getItem('user'));
+  if (players !== null) {
+    return players;
   }
   return [];
 }
@@ -12,7 +13,7 @@ getPlayers = () => {
 render() {
   return (
     <div>
-      {this.getPlayers().sort((a, b) => a - b).map((player, index) => (
+      {(this.getPlayers().sort((a, b) => b - a)).map((player, index) => (
         <div
           key={ index }
         >
