@@ -1,11 +1,11 @@
 import React from 'react';
-import GameHeader from '../Components/GameHeader';
+import Header from '../Components/Header';
 
 export default class Feedback extends React.Component {
   render() {
     return (
       <div>
-        <GameHeader />
+        <Header />
       </div>
     );
   }

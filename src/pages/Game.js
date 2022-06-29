@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import GameHeader from '../Components/GameHeader';
+import Header from '../Components/Header';
 
 class Game extends Component {
   render() {
     return (
-      <GameHeader />
+      <Header />
     );
   }
 }

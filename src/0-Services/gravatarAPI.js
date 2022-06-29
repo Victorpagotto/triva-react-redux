@@ -1,10 +1,10 @@
 // Função para manejar a hash do gravatar
-import CryptoJS from 'crypto-js';
+import { MD5 } from 'crypto-js';
 
 function toHash(email) {
   const trimmedEmail = email.trim();
   const toLowerEmail = trimmedEmail.toLowerCase();
-  return CryptoJS.MD5(toLowerEmail).toString();
+  return MD5(toLowerEmail).toString();
 }
 
 function getImage(email) {
