@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import propTypes from 'prop-types';
+import { connect } from 'react-redux';
 import getToken from '../0-Services/tokenAPI';
 import LoadingPage from '../Components/LoadingPage';
 import logo from '../trivia.png';
+import actions from '../3-actions';
+
+const mapDispatchToProps = (dispatch) => ({
+  setName: (name) => dispatch(actions.setName(name)),
+  setEmail: (gravatarEmail) => dispatch(actions.setEmail(gravatarEmail)),
+});
 
 class Login extends Component {
   state =
@@ -24,11 +31,14 @@ class Login extends Component {
     }
 
     handleClick = () => {
-      const { history } = this.props;
+      const { history, setName, setEmail } = this.props;
+      const { name, gravatarEmail } = this.state;
+      setName(name);
+      setEmail(gravatarEmail);
       this.setState({ loading: true }, async () => {
         localStorage.setItem('token', await getToken());
         this.setState({ loading: false }, () => {
-          history.push('/CAMINHO_LOCO');
+          history.push('/game');
         });
       });
     }
@@ -92,6 +102,8 @@ Login.propTypes = {
   history: propTypes.shape({
     push: propTypes.func.isRequired,
   }).isRequired,
+  setName: propTypes.func.isRequired,
+  setEmail: propTypes.func.isRequired,
 };
 
-export default Login;
+export default connect(null, mapDispatchToProps)(Login);
