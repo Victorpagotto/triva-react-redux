@@ -2,22 +2,27 @@ import React, { Component } from 'react';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
 import actions from '../3-actions';
+import '../CSS/AnswersStyle.css';
 
 const mapDispatchToProps = (dispatch) => ({
   addAssertions: () => dispatch(actions.addAssertion()),
 });
 class Question extends Component {
+state = {
+  styleTrue: '',
+  styleFalse: '',
+}
+
   handleClick = ({ target: { value } }) => {
     const { addAssertions } = this.props;
     if (value === 'true') {
       // atualizar assertions
-      console.log('Acertou!');
       addAssertions();
-      // mudar cor respostas
+      this.setState({ styleFalse: 'false', styleTrue: 'true' });
       // parar timer
       // aparecer botão next para prox pergunta
     } else {
-      // mudar cor das respotas
+      this.setState({ styleFalse: 'false', styleTrue: 'true' });
       // parar o timer
       // aparecer botão next para prox pergunta
     }
@@ -53,6 +58,7 @@ class Question extends Component {
 
   render() {
     const { ask } = this.props;
+    const { styleFalse, styleTrue } = this.state;
     return (
       <div>
         <p datatest-id="question-category">{ask.category}</p>
@@ -65,6 +71,11 @@ class Question extends Component {
                 key={ option.index }
                 value={ option.isCorrect }
                 onClick={ this.handleClick }
+                className={
+                  option.isCorrect
+                    ? styleTrue
+                    : styleFalse
+                }
                 data-testid={
                   option.isCorrect
                     ? 'correct-answer'
