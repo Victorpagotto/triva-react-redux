@@ -12,14 +12,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 class Game extends Component {
   state = {
-    questions: [{
-      category: '',
-      question: '',
-      type: '',
-      difficulty: 0,
-      correct_answer: '',
-      incorrect_answers: [''],
-    }],
+    questions: [],
     stage: 0,
     // category: [],
   };
@@ -45,7 +38,7 @@ class Game extends Component {
     return (
       <>
         <Header />
-        <Question ask={ questions[stage] } />
+        <Question question={ questions[stage] } />
       </>
     );
   }
