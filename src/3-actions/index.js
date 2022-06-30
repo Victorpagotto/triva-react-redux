@@ -4,6 +4,7 @@
 const actions = {
   setName: (name) => ({ type: 'NAME', info: name }),
   setEmail: (gravatarEmail) => ({ type: 'GRAVATAR_EMAIL', info: gravatarEmail }),
+  updateScore: (score) => ({ type: 'UPDATE_SCORE', info: score }),
 };
 
 export default actions;
