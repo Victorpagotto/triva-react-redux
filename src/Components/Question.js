@@ -8,6 +8,13 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 class Question extends Component {
+
+  generateBtt = () => {
+    // declara uma array vazio
+    // declarei uma função de numero aleatorio de 1 a 4
+    // declara uma função pra preencher o array
+    // retorna 4 botoẽs;
+  }
   handleClick = (e) => {
     const { addAssertions } = this.props;
     if (e.target['data-testid'] === 'correct-answer') {
@@ -52,7 +59,7 @@ class Question extends Component {
               </button>
             </>
           ) : (
-            'qualquer coisa'
+            generateBtt()
           )}
         </div>
       </div>
