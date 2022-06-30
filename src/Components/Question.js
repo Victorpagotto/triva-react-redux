@@ -61,11 +61,13 @@ state = {
     const { styleFalse, styleTrue } = this.state;
     return (
       <div>
-        <p datatest-id="question-category">{ask.category}</p>
-        <p datatest-id="question-text">{ask.question}</p>
-        <div>
+        <p data-testid="question-category">{ask.category}</p>
+        <p data-testid="question-text">{ask.question}</p>
+        <div data-testid="answer-options">
+
           {
             this.shuffleQuestions(ask).map((option) => (
+
               <button
                 type="button"
                 key={ option.index }
