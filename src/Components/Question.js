@@ -7,10 +7,11 @@ const mapDispatchToProps = (dispatch) => ({
   addAssertions: () => dispatch(actions.addAssertion()),
 });
 class Question extends Component {
-  handleClick = (e) => {
+  handleClick = ({ target: { value } }) => {
     const { addAssertions } = this.props;
-    if (e.target['data-testid'] === 'correct-answer') {
+    if (value === 'true') {
       // atualizar assertions
+      console.log('Acertou!');
       addAssertions();
       // mudar cor respostas
       // parar timer
@@ -22,35 +23,58 @@ class Question extends Component {
     }
   }
 
+  manageAnswer = (ask) => {
+    const correctAnswer = {
+      isCorrect: true,
+      index: ask.incorrect_answers.length,
+      answer: ask.correct_answer,
+    };
+    const wrongAnswers = ask.incorrect_answers.map((answer, i) => ({
+      isCorrect: false,
+      index: i,
+      answer,
+    }));
+    const answerList = [...wrongAnswers, correctAnswer];
+    return answerList;
+  }
+
+  shuffleQuestions = (answers) => {
+    const managedAnswers = this.manageAnswer(answers);
+    let copy = [...managedAnswers];
+    const shuffledAnswers = managedAnswers.map(() => {
+      const position = Math.floor(Math.random() * copy.length);
+      const selectedAnswer = copy[position];
+      copy[position] = '';
+      copy = copy.filter((item) => item !== '');
+      return selectedAnswer;
+    });
+    return shuffledAnswers;
+  }
+
   render() {
     const { ask } = this.props;
     return (
       <div>
         <p datatest-id="question-category">{ask.category}</p>
         <p datatest-id="question-text">{ask.question}</p>
-        <div datatest-id="answer-options">
-          {ask.type === 'boolean' ? (
-            <>
+        <div>
+          {
+            this.shuffleQuestions(ask).map((option) => (
               <button
-                onClick={ this.handleClick }
                 type="button"
-                data-testid={ () => (ask.correct_answer === 'True' ? 'correct-answer'
-                  : 'wrong-answer-0') }
-              >
-                True
-              </button>
-              <button
+                key={ option.index }
+                value={ option.isCorrect }
                 onClick={ this.handleClick }
-                type="button"
-                data-testid={ () => (ask.correct_answer === 'False' ? 'correct-aswer'
-                  : 'wrong-answer-0') }
+                data-testid={
+                  option.isCorrect
+                    ? 'correct-answer'
+                    : `wrong-answer-${option.index}`
+                }
               >
-                False
+                { option.answer }
               </button>
-            </>
-          ) : (
-            'qualquer coisa'
-          )}
+            ))
+          }
         </div>
       </div>
     );

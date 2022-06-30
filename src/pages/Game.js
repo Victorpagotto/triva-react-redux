@@ -15,7 +15,7 @@ class Game extends Component {
       category: '',
       question: '',
       type: '',
-      difficulty: 0,
+      difficulty: '0',
       correct_answer: '',
       incorrect_answers: [''],
     }],
