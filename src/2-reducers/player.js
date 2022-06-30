@@ -17,6 +17,8 @@ const player = (state = initial, action) => {
     return { ...state, gravatarEmail: action.info };
   case 'RESET_STATE':
     return initial;
+  case 'ADD_ASSERTION':
+    return { ...state, assertions: state.assertions + 1 };
   default:
     return state;
   }

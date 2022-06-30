@@ -1,76 +1,75 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
+import { connect } from 'react-redux';
+import actions from '../3-actions';
+
+const mapDispatchToProps = (dispatch) => ({
+  addAssertions: () => dispatch(actions.addAssertion()),
+});
 
 class Question extends Component {
+  handleClick = (e) => {
+    const { addAssertions } = this.props;
+    if (e.target['data-testid'] === 'correct-answer') {
+      // atualizar assertions
+      addAssertions();
+      // mudar cor respostas
+      // parar timer
+      // aparecer botão next para prox pergunta
+    } else {
+      // mudar cor das respotas
+      // parar o timer
+      // aparecer botão next para prox pergunta
+    }
+  }
+
   render() {
-    const {
-      question: {
-        category,
-        question,
-        // type,
-        // difficulty,
-        // correct_answer,
-        // incorrect_answers,
-      },
-    } = this.props;
+    const { ask } = this.props;
 
     return (
       <div>
-        <p datatest-id="question-category">{category}</p>
-        <p datatest-id="question-text">{question}</p>
-        {/* <div datatest-id="answer-options">
-          {type === 'boolean' ? (
+        <p datatest-id="question-category">{ask.category}</p>
+        <p datatest-id="question-text">{ask.question}</p>
+        <div datatest-id="answer-options">
+          {ask.type === 'boolean' ? (
             <>
               <button
-                data-testid={ () => (correct_answer === 'True' ? 'correct-answer' : 'wrong-answer-0') }
+                onClick={ this.handleClick }
+                type="button"
+                data-testid={ () => (ask.correct_answer === 'True' ? 'correct-answer'
+                  : 'wrong-answer-0') }
               >
                 True
               </button>
 
               <button
-                data-testid={ () => (correct_answer === 'False' ? 'correct-aswer' : 'wrong-answer-0') }
+                onClick={ this.handleClick }
+                type="button"
+                data-testid={ () => (ask.correct_answer === 'False' ? 'correct-aswer'
+                  : 'wrong-answer-0') }
               >
                 False
               </button>
             </>
           ) : (
-            <>
-              <button data-testeid={()=> (correct_answer === 'True' ? correct_answer : )} />
-
-              <button data-testeid={()=> (correct_answer === 'True' ? correct_answer : )}/>
-
-              <button data-testeid={()=> (correct_answer === 'True' ? correct_answer : )}/>
-
-              <button data-testeid={()=> (correct_answer === 'True' ? correct_answer : )}/>
-            </>
+            'qualquer coisa'
           )}
-        </div> */}
+        </div>
       </div>
     );
   }
 }
+
 Question.propTypes = {
-  question: propTypes.shape({
+  ask: propTypes.shape({
     category: propTypes.string.isRequired,
     question: propTypes.string.isRequired,
     type: propTypes.string.isRequired,
     difficulty: propTypes.string.isRequired,
-    correct_answers: propTypes.string.isRequired,
+    correct_answer: propTypes.string.isRequired,
     incorrect_answers: propTypes.arrayOf(propTypes.string),
   }).isRequired,
+  addAssertions: propTypes.func.isRequired,
 };
 
-export default Question;
-
-//         {
-//           "category":"Entertainment: Video Games",
-//           "type":"multiple",
-//           "difficulty":"easy",
-//           "question":"What is the first weapon you acquire in Half-Life?",
-//           "correct_answer":"A crowbar",
-//           "incorrect_answers":[
-//               "A pistol",
-//               "The H.E.V suit",
-//               "Your fists"
-//           ]
-//         }
+export default connect(null, mapDispatchToProps)(Question);
