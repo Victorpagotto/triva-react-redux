@@ -9,10 +9,16 @@ import Question from '../Components/Question';
 const mapDispatchToProps = (dispatch) => ({
   setInitialState: () => dispatch(actions.setInitialState()),
 });
-
 class Game extends Component {
   state = {
-    questions: [],
+    questions: [{
+      category: '',
+      question: '',
+      type: '',
+      difficulty: 0,
+      correct_answer: '',
+      incorrect_answers: [''],
+    }],
     stage: 0,
     // category: [],
   };
@@ -38,17 +44,15 @@ class Game extends Component {
     return (
       <>
         <Header />
-        <Question question={ questions[stage] } />
+        <Question ask={ questions[stage] } />
       </>
     );
   }
 }
-
 Game.propTypes = {
   history: propTypes.shape({
     push: propTypes.func.isRequired,
   }).isRequired,
   setInitialState: propTypes.func.isRequired,
 };
-
 export default connect(null, mapDispatchToProps)(Game);

@@ -6,15 +6,7 @@ import actions from '../3-actions';
 const mapDispatchToProps = (dispatch) => ({
   addAssertions: () => dispatch(actions.addAssertion()),
 });
-
 class Question extends Component {
-
-  generateBtt = () => {
-    // declara uma array vazio
-    // declarei uma função de numero aleatorio de 1 a 4
-    // declara uma função pra preencher o array
-    // retorna 4 botoẽs;
-  }
   handleClick = (e) => {
     const { addAssertions } = this.props;
     if (e.target['data-testid'] === 'correct-answer') {
@@ -32,7 +24,6 @@ class Question extends Component {
 
   render() {
     const { ask } = this.props;
-
     return (
       <div>
         <p datatest-id="question-category">{ask.category}</p>
@@ -48,7 +39,6 @@ class Question extends Component {
               >
                 True
               </button>
-
               <button
                 onClick={ this.handleClick }
                 type="button"
@@ -59,14 +49,13 @@ class Question extends Component {
               </button>
             </>
           ) : (
-            generateBtt()
+            'qualquer coisa'
           )}
         </div>
       </div>
     );
   }
 }
-
 Question.propTypes = {
   ask: propTypes.shape({
     category: propTypes.string.isRequired,
@@ -78,5 +67,4 @@ Question.propTypes = {
   }).isRequired,
   addAssertions: propTypes.func.isRequired,
 };
-
 export default connect(null, mapDispatchToProps)(Question);
