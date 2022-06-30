@@ -5,7 +5,7 @@ import userEvent from '@testing-library/user-event'
 import Ranking from "../../pages/Ranking";
 
 describe('Testes da página de Ranking', () => {
-  it('Desenvolva testes para atingir 90% de cobertura da tela de Ranking', async () => {
+  it('Testa se ao clicar no botão Go home a aplicação é redirecionada à página inicial. ', async () => {
     const { history } = renderWithRouterAndRedux(<Ranking />)
 
     const btnGoHome = screen.getByTestId('btn-go-home')
@@ -16,7 +16,7 @@ describe('Testes da página de Ranking', () => {
 
   })
 
-  it('Desenvolva testes para atingir 90% de cobertura da tela de Ranking', () => {
+  it('Testa se os dados dos jogadores são pegos do localStorage e renderizados na tela em ordem de maior score.', () => {
     const user = [
       {
         name:'Trybe',
@@ -39,6 +39,7 @@ describe('Testes da página de Ranking', () => {
 
     const playerImg = screen.getAllByTestId("header-profile-picture")
     expect(playerImg[0]).toBeInTheDocument()
+    expect(playerImg[1]).toBeInTheDocument()
     expect(playerImg).toHaveLength(2)
 
     const player1 = screen.getByTestId('player-name-0')
