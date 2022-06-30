@@ -1,4 +1,5 @@
 /*
+Abaixo o necessário:
 States necessários:
     timer: 30
     timeOut: false
