@@ -21,7 +21,6 @@ class Game extends Component {
       incorrect_answers: [''],
     }],
     stage: 0,
-    // category: [],
   };
 
   async componentDidMount() {
