@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import gravatar from '../0-Services/gravatarAPI';
 
-const mapStateToProps = (state) => ({ player: state.player });
+const mapStateToProps = (state) => ({ player: state.player, score: state.score });
 
 class Header extends Component {
   render() {
