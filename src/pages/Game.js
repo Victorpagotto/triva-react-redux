@@ -93,14 +93,15 @@ class Game extends Component {
       <>
         <Header />
         <Score />
-        { questions && questions.length &&
+        { questions && questions.length
+        && (
           <Question
             key={ stage }
             ask={ questions[stage] }
             answers={ this.shuffleQuestions(questions[stage]) }
             nextQuestion={ this.nextQuestion }
           />
-        }
+        )}
       </>
     );
   }
