@@ -5,6 +5,7 @@ import getQuestions from '../0-Services/triviaAPI';
 import Header from '../Components/Header';
 import actions from '../3-actions';
 import Question from '../Components/Question';
+import Score from '../Components/Score';
 
 const mapDispatchToProps = (dispatch) => ({
   setInitialState: () => dispatch(actions.setInitialState()),
@@ -44,6 +45,7 @@ class Game extends Component {
     return (
       <>
         <Header />
+        <Score />
         <Question ask={ questions[stage] } />
       </>
     );

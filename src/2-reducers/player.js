@@ -19,6 +19,8 @@ const player = (state = initial, action) => {
     return initial;
   case 'ADD_ASSERTION':
     return { ...state, assertions: state.assertions + 1 };
+  case 'UPDATE_SCORE':
+    return { ...state, score: state.score + action.info };
   default:
     return state;
   }
