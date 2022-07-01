@@ -4,6 +4,8 @@
 const actions = {
   setName: (name) => ({ type: 'NAME', info: name }),
   setEmail: (gravatarEmail) => ({ type: 'GRAVATAR_EMAIL', info: gravatarEmail }),
+  setInitialState: () => ({ type: 'RESET_STATE' }),
+  addAssertion: () => ({ type: 'ADD_ASSERTION' }),
   updateScore: (score) => ({ type: 'UPDATE_SCORE', info: score }),
 };
 

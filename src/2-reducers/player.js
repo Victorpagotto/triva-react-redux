@@ -15,6 +15,10 @@ const player = (state = initial, action) => {
     return { ...state, score: action.info };
   case 'GRAVATAR_EMAIL':
     return { ...state, gravatarEmail: action.info };
+  case 'RESET_STATE':
+    return initial;
+  case 'ADD_ASSERTION':
+    return { ...state, assertions: state.assertions + 1 };
   case 'UPDATE_SCORE':
     return { ...state, score: state.score + action.info };
   default:

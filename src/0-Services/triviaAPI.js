@@ -1,4 +1,5 @@
 const getQuestions = async (token) => {
+  const amount = 5;
   if (token !== 'Failed the token.') {
     const endpoint = `https://opentdb.com/api.php?amount=${amount}&token=${token}`;
     return fetch(endpoint)

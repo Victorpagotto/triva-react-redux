@@ -1,0 +1,7 @@
+.true {
+  border: 3px solid rgb(6, 240, 15);
+}
+
+.false {
+  border: 3px solid red;
+}
