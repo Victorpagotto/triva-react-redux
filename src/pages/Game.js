@@ -36,7 +36,6 @@ class Game extends Component {
       this.setState({
         questions: perguntas,
       });
-      console.log(perguntas);
     }
   }
 
@@ -46,7 +45,7 @@ class Game extends Component {
       <>
         <Header />
         <Score />
-        <Question ask={ questions[stage] } />
+        { questions && questions.length && <Question ask={ questions[stage] } />}
       </>
     );
   }
