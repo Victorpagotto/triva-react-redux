@@ -60,7 +60,7 @@ class Login extends Component {
             <img src={ logo } className="App-logo" alt="logo" />
             <p>SUA VEZ</p>
             <form>
-              <label htmlFor="playner-name">
+              <label htmlFor="player-name">
                 Nome:
                 <input
                   id="player-name"
@@ -70,10 +70,10 @@ class Login extends Component {
                   onChange={ this.handleChange }
                 />
               </label>
-              <label htmlFor="playner-name">
+              <label htmlFor="player-email">
                 Email:
                 <input
-                  id="player-name"
+                  id="player-email"
                   data-testid="input-gravatar-email"
                   type="email"
                   name="gravatarEmail"

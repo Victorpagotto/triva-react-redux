@@ -21,7 +21,6 @@ class Game extends Component {
       incorrect_answers: [''],
     }],
     stage: 0,
-    // category: [],
   };
 
   async componentDidMount() {
@@ -35,7 +34,6 @@ class Game extends Component {
       this.setState({
         questions: perguntas,
       });
-      console.log(perguntas);
     }
   }
 
@@ -95,12 +93,14 @@ class Game extends Component {
       <>
         <Header />
         <Score />
-        <Question
-          key={ stage }
-          ask={ questions[stage] }
-          answers={ this.shuffleQuestions(questions[stage]) }
-          nextQuestion={ this.nextQuestion }
-        />
+        { questions && questions.length &&
+          <Question
+            key={ stage }
+            ask={ questions[stage] }
+            answers={ this.shuffleQuestions(questions[stage]) }
+            nextQuestion={ this.nextQuestion }
+          />
+        }
       </>
     );
   }

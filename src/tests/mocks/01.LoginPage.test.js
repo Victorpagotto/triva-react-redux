@@ -33,6 +33,6 @@ describe('Testes da página de Login', () => {
         expect(inputName.value).toBe('Trybe');
         userEvent.click(btnPlay);
         await waitFor(() => expect(localStorage.setItem).toHaveBeenCalled());
-        expect(history.location.pathname).not.toBe('/');
+        expect(history.location.pathname).toBe('/game');
     })
 })
