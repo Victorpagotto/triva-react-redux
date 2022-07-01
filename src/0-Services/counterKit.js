@@ -8,14 +8,16 @@ Elemento necessário na classe:
     Counter
 */
 
+const TIMEAMOUNT = 30;
+
 function createCounter(target) {
   const INTERVAL = 1000;
   target.setState({ timeOut: false }, () => {
     target.counter = setInterval(() => {
       const { timer } = target.state;
       if (timer < 1) {
-        clearInterval(this.counter);
-        target.setState({ timer: 30, timeOut: true });
+        clearInterval(target.counter);
+        target.setState({ timer: TIMEAMOUNT, timeOut: true });
       } else {
         target.setState((prevState) => ({
           timer: prevState.timer - 1,
@@ -27,7 +29,7 @@ function createCounter(target) {
 
 function startControl(target) {
   clearInterval(target.counter);
-  target.setState({ timer: 30, paused: false }, () => {
+  target.setState({ timer: TIMEAMOUNT, paused: false }, () => {
     createCounter(target);
   });
 }

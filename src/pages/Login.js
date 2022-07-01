@@ -10,6 +10,7 @@ import actions from '../3-actions';
 const mapDispatchToProps = (dispatch) => ({
   setName: (name) => dispatch(actions.setName(name)),
   setEmail: (gravatarEmail) => dispatch(actions.setEmail(gravatarEmail)),
+  setInitialState: () => dispatch(actions.setInitialState()),
 });
 
 class Login extends Component {
@@ -21,6 +22,11 @@ class Login extends Component {
       gravatarEmail: '',
       loading: false,
     }
+
+  componentDidMount() {
+    const { setInitialState } = this.props;
+    setInitialState();
+  }
 
     handleChange = ({ target }) => {
       const { value } = target;
@@ -105,6 +111,7 @@ Login.propTypes = {
   }).isRequired,
   setName: propTypes.func.isRequired,
   setEmail: propTypes.func.isRequired,
+  setInitialState: propTypes.func.isRequired,
 };
 
 export default connect(null, mapDispatchToProps)(Login);
