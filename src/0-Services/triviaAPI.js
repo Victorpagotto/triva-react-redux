@@ -2,14 +2,12 @@ const getQuestions = async (token) => {
   const amount = 5;
   if (token !== 'Failed the token.') {
     const endpoint = `https://opentdb.com/api.php?amount=${amount}&token=${token}`;
-    return fetch(endpoint)
-      .then((res) => res.json())
-      .then((res) => {
-        if (res.response_code !== 0) {
-          return 'Failed questions fetch.';
-        }
-        return res.results;
-      });
+    const firstResponse = await fetch(endpoint)
+      .then((res) => res.json());
+    if (firstResponse.response_code !== 0) {
+      return 'Failed questions fetch.';
+    }
+    return firstResponse.results;
   }
   return token;
 };
