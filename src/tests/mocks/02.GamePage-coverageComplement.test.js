@@ -169,6 +169,36 @@ describe('testes da página Game', () => {
     localStorage.user = 'null';
     play(questions);
     expect(localStorage.setItem).toHaveBeenCalled();
+  });
 
+  test('Testa um código diferente de 0 na API de perguntas.', async () => {
+    global.fetch = jest.fn().mockResolvedValue({
+      json: jest.fn().mockResolvedValue({
+        response_code: 3,
+      })
+    })
+    const { history } = renderWithRouterAndRedux(<App />, initialState(0,0), '/game');
+
+    await waitFor(() => expect(global.fetch).toHaveBeenCalled());
+
+    expect(history.location.pathname).toBe('/');
+  });
+
+  test('Testa o timer do jogo.', async () => {
+    jest.setTimeout(45000);
+    global.fetch = mockFetch
+    const questions = questionsResponseMock.results;
+    renderWithRouterAndRedux(<App />, initialState(0,0), '/game');
+    await waitFor(() => expect(global.fetch).toHaveBeenCalled());
+    await new Promise((resolve) => setTimeout(resolve, 5000));
+    expect(screen.getByText(questions[0].correct_answer)).not.toHaveProperty('disabled', true);
+    userEvent.click(screen.getByTestId('wrong-answer-0'));
+    expect(screen.getByText(questions[0].correct_answer)).toHaveProperty('disabled', true);
+
+    cleanup();
+    renderWithRouterAndRedux(<App />, initialState(0,0), '/game');
+    await waitFor(() => expect(global.fetch).toHaveBeenCalled());
+    await new Promise((resolve) => setTimeout(resolve, 32000));
+    expect(screen.getByText(questions[0].correct_answer)).toHaveProperty('disabled', true);
   });
 });

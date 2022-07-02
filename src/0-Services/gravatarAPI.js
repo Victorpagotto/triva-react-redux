@@ -11,14 +11,9 @@ function getImage(email) {
   return `https://www.gravatar.com/avatar/${toHash(email)}`;
 }
 
-function getProfile(email) {
-  return `https://www.gravatar.com/${toHash(email)}`;
-}
-
 const gravatar = {
   toHash,
   getImage,
-  getProfile,
 };
 
 export default gravatar;

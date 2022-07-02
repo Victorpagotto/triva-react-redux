@@ -34,16 +34,8 @@ function startControl(target) {
   });
 }
 
-function pauseControl(target, paused) {
-  target.setState((prevState) => ({
-    paused: !prevState.paused,
-  }), () => {
-    if (!paused) {
-      clearInterval(target.counter);
-    } else {
-      createCounter(target);
-    }
-  });
+function pauseControl(target) {
+  clearInterval(target.counter);
 }
 
 const counterKit = {

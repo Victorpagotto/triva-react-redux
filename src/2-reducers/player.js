@@ -11,8 +11,6 @@ const player = (state = initial, action) => {
     return { ...state, name: action.info };
   case 'ASSERTIONS':
     return { ...state, assertions: action.info };
-  case 'SCORE':
-    return { ...state, score: action.info };
   case 'GRAVATAR_EMAIL':
     return { ...state, gravatarEmail: action.info };
   case 'RESET_STATE':
