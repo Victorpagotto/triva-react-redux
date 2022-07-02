@@ -11,30 +11,58 @@ const mapStateToProps = ({ player }) => ({
 });
 
 class Game extends Component {
-  state = {
-    questions: [{
-      category: '',
-      question: '',
-      type: '',
-      difficulty: '0',
-      correct_answer: '',
-      incorrect_answers: [''],
-    }],
-    stage: 0,
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      questions: [
+        {
+          category: '',
+          question: '',
+          type: '',
+          difficulty: '0',
+          correct_answer: '',
+          incorrect_answers: [''],
+        },
+      ],
+      stage: 0,
+    };
 
-  async componentDidMount() {
+    this.controller = new AbortController();
+
+    this.manageAnswer = this.manageAnswer.bind(this);
+    this.registerPlayer = this.registerPlayer.bind(this);
+    this.nextQuestion = this.nextQuestion.bind(this);
+    this.shuffleQuestions = this.shuffleQuestions.bind(this);
+  }
+
+  componentDidMount() {
     const { history } = this.props;
     const token = localStorage.getItem('token');
-    const perguntas = await getQuestions(token);
-    if (perguntas === 'Failed the token.' || perguntas === 'Failed questions fetch.') {
-      localStorage.setItem('token', null);
-      history.push('/');
-    } else {
-      this.setState({
-        questions: perguntas,
+    const { signal } = this.controller;
+    getQuestions(token, { signal })
+      .then((perguntas) => {
+        if (
+          perguntas === 'Failed the token.'
+          || perguntas === 'Failed questions fetch.'
+        ) {
+          localStorage.setItem('token', null);
+          history.push('/');
+        } else {
+          this.setState({
+            questions: perguntas,
+          });
+        }
+      })
+      .catch((error) => {
+        if (error.name === 'AbortError') {
+          return;
+        }
+        throw error;
       });
-    }
+  }
+
+  componentWillUnmount() {
+    this.controller.abort();
   }
 
   registerPlayer = () => {
@@ -45,7 +73,7 @@ class Game extends Component {
     } else {
       localStorage.setItem('user', JSON.stringify([player]));
     }
-  }
+  };
 
   nextQuestion = () => {
     const { stage } = this.state;
@@ -59,7 +87,7 @@ class Game extends Component {
         stage: prevState.stage + 1,
       }));
     }
-  }
+  };
 
   manageAnswer = (ask) => {
     const correctAnswer = {
@@ -73,7 +101,7 @@ class Game extends Component {
       answer,
     }));
     return [...wrongAnswers, correctAnswer];
-  }
+  };
 
   shuffleQuestions = (answers) => {
     const managedAnswers = this.manageAnswer(answers);
@@ -85,7 +113,7 @@ class Game extends Component {
       copy = copy.filter((item) => item !== '');
       return selectedAnswer;
     });
-  }
+  };
 
   render() {
     const { questions, stage } = this.state;
@@ -93,8 +121,7 @@ class Game extends Component {
       <>
         <Header />
         <Score />
-        { questions && questions.length
-        && (
+        {questions && questions.length && (
           <Question
             key={ stage }
             ask={ questions[stage] }

@@ -29,6 +29,10 @@ class Question extends Component {
     counterKit.startControl(this);
   }
 
+  componentWillUnmount() {
+    counterKit.pauseControl(this);
+  }
+
   calculateScore = () => {
     const { timer, difficulties } = this.state;
     const { ask } = this.props;

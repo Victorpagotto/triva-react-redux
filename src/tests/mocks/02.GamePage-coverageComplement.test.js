@@ -23,17 +23,19 @@ describe('testes da página Game', () => {
     json: jest.fn().mockResolvedValue(questionsResponseMock),
   });
 
-  test('Testa se o Header possui as informações do jogador.', () => {
+  test('Testa se o Header possui as informações do jogador.', async () => {
     global.fetch = mockFetch;
     renderWithRouterAndRedux(<App />, initialState(0,0), '/game');
 
     const imgProfile = screen.getByTestId('header-profile-picture');
     const nameProfile = screen.getByTestId('header-player-name');
     const headerScore = screen.getByTestId('header-score');
-
-    expect(imgProfile).toBeInTheDocument();
-    expect(nameProfile).toBeInTheDocument();
-    expect(headerScore).toBeInTheDocument();
+    await waitFor(() => {
+      expect(imgProfile).toBeInTheDocument();
+      expect(nameProfile).toBeInTheDocument();
+      expect(headerScore).toBeInTheDocument();
+    })
+    
 
   });
 
