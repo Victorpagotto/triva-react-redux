@@ -1,6 +1,6 @@
 import React from "react";
-import App from '../../App';
-import renderWithRouterAndRedux from "../helpers/renderWithRouterAndRedux";
+import App from '../App';
+import renderWithRouterAndRedux from "./helpers/renderWithRouterAndRedux";
 import { screen, waitFor } from "@testing-library/react";
 import { cleanup } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
