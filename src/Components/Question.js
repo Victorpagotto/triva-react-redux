@@ -16,7 +16,6 @@ class Question extends Component {
     styleFalse: '',
     timer: 10,
     timeOut: false,
-    paused: false,
     difficulties: {
       easy: 1,
       medium: 2,
@@ -39,18 +38,13 @@ class Question extends Component {
 
   answerQuestion = ({ target: { value } }) => {
     const { addAssertions, updateScore } = this.props;
-    const { paused } = this.state;
     this.setState({ timeOut: true }, () => {
-      counterKit.pauseControl(this, paused);
+      counterKit.pauseControl(this);
+      this.setState({ styleFalse: 'false', styleTrue: 'true' });
       if (value === 'true') {
         // atualizar assertions
         addAssertions();
         updateScore(this.calculateScore());
-        this.setState({ styleFalse: 'false', styleTrue: 'true' });
-        // aparecer botão next para prox pergunta
-      } else {
-        this.setState({ styleFalse: 'false', styleTrue: 'true' });
-        // parar o timer
         // aparecer botão next para prox pergunta
       }
     });

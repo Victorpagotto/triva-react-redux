@@ -27,7 +27,7 @@ class Game extends Component {
     const { history } = this.props;
     const token = localStorage.getItem('token');
     const perguntas = await getQuestions(token);
-    if (perguntas === 'Failed questions fetch.') {
+    if (perguntas === 'Failed the token.' || perguntas === 'Failed questions fetch.') {
       localStorage.setItem('token', null);
       history.push('/');
     } else {
@@ -39,7 +39,7 @@ class Game extends Component {
 
   registerPlayer = () => {
     const { player } = this.props;
-    if (localStorage.user !== undefined) {
+    if (localStorage.user !== undefined && localStorage.user !== 'null') {
       const playerList = JSON.parse(localStorage.getItem('user'));
       localStorage.setItem('user', JSON.stringify([...playerList, player]));
     } else {
