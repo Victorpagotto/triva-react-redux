@@ -27,7 +27,7 @@ class Game extends Component {
     const { history } = this.props;
     const token = localStorage.getItem('token');
     const perguntas = await getQuestions(token);
-    if (perguntas === 'Failed questions fetch.') {
+    if (perguntas === 'Failed the token.') {
       localStorage.setItem('token', null);
       history.push('/');
     } else {
