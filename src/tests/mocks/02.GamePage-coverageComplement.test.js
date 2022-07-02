@@ -139,4 +139,36 @@ describe('testes da página Game', () => {
     expect(score.innerHTML).toBe('40');
 
   });
+
+  const play = (questions) => {
+    questions.forEach((question) => {
+      const correctAnswer = screen.getByText(question.correct_answer);
+      expect(correctAnswer).not.toHaveProperty('disabled', true);
+      userEvent.click(correctAnswer);
+      expect(correctAnswer).toHaveProperty('disabled', true);
+      const nextButton = screen.getByTestId('btn-next');
+      userEvent.click(nextButton);
+    });
+  }
+
+  test('Testa se há um botão next e o registro no placar de jogadores.', async () => {
+    global.fetch = mockFetch
+    Storage.prototype.setItem = jest.fn();
+    const { history } = renderWithRouterAndRedux(<App />, initialState(0,0), '/game');
+    await waitFor(() => expect(global.fetch).toHaveBeenCalled());
+    const questions = questionsResponseMock.results;
+
+    localStorage.user = JSON.stringify(['']);
+
+    play(questions);
+    expect(history.location.pathname).toBe('/feedback');
+    expect(localStorage.setItem).toHaveBeenCalled();
+    cleanup();
+    renderWithRouterAndRedux(<App />, initialState(0,0), '/game');
+    await waitFor(() => expect(global.fetch).toHaveBeenCalled());
+    localStorage.user = 'null';
+    play(questions);
+    expect(localStorage.setItem).toHaveBeenCalled();
+
+  });
 });

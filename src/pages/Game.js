@@ -39,7 +39,7 @@ class Game extends Component {
 
   registerPlayer = () => {
     const { player } = this.props;
-    if (localStorage.user !== undefined) {
+    if (localStorage.user !== undefined && localStorage.user !== 'null') {
       const playerList = JSON.parse(localStorage.getItem('user'));
       localStorage.setItem('user', JSON.stringify([...playerList, player]));
     } else {
