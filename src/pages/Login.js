@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
+import '../CSS/loginPage.css';
 import getToken from '../0-Services/tokenAPI';
 import LoadingPage from '../Components/LoadingPage';
 import logo from '../trivia.png';
@@ -55,13 +56,13 @@ class Login extends Component {
         return <LoadingPage />;
       }
       return (
-        <div className="App">
-          <section className="App-header">
+        <div className="App loginPage">
+          <section className="App-header loginPage-container">
             <img src={ logo } className="App-logo" alt="logo" />
             <p>SUA VEZ</p>
-            <form>
+            <form className="login-form">
               <label htmlFor="player-name">
-                Nome:
+                Nome
                 <input
                   id="player-name"
                   data-testid="input-player-name"
@@ -71,7 +72,7 @@ class Login extends Component {
                 />
               </label>
               <label htmlFor="player-email">
-                Email:
+                Email
                 <input
                   id="player-email"
                   data-testid="input-gravatar-email"
@@ -85,6 +86,7 @@ class Login extends Component {
                 data-testid="btn-play"
                 disabled={ (name === '' || gravatarEmail === '') }
                 onClick={ this.handleClick }
+                className="play-btn"
               >
                 Play
 

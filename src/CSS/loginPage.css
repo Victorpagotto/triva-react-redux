@@ -1,0 +1,58 @@
+.login-form {
+  border: solid 6px rgb(255, 255, 255, 0.3);
+  border-radius: 25px;
+  color: rgb(255, 255, 255, 0.6);
+  display: flex;
+  flex-flow: column nowrap;
+  height: fit-content;
+  padding: 30px;
+}
+
+.login-form button {
+  background-color: white;
+  border: solid 3px black;
+  border-radius: 10px;
+  font-family: 'Press Start 2P' , cursive;
+  font-size: 0.5em;
+  font-weight: 700;
+  margin-bottom: 10px;
+  outline: solid 1px white;
+  padding: 10px;
+  width: 100%;
+}
+
+.login-form button:hover {
+  background-color: black;
+  border: solid 3px black;
+  color: white;
+  outline: solid 1px black;
+}
+
+.login-form button:active {
+  background-color: white;
+  border: solid 3px black;
+  color: black;
+  outline: solid 1px white;
+}
+
+.login-form button:disabled {
+  background-color: rgb(255, 255, 255, 0.4);
+  border: solid 3px rgb(0, 0, 0, 0.4);
+  color: rgb(0, 0, 0, 0.4);
+  outline: solid 1px rgb(255, 255, 255, 0.4);
+}
+
+.login-form label {
+  font-size: 0.8em;
+}
+
+.login-form input {
+  background-color: rgb(255, 255, 255, 0.8);
+  border-radius: 5px;
+  height: 30px;
+  margin: 10px;
+}
+
+.play-btn {
+  margin-top: 50px;
+}

@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import getQuestions from '../0-Services/triviaAPI';
 import Header from '../Components/Header';
 import Question from '../Components/Question';
-import Score from '../Components/Score';
 
 const mapStateToProps = ({ player }) => ({
   player,
@@ -112,9 +111,8 @@ class Game extends Component {
   render() {
     const { questions, stage } = this.state;
     return (
-      <>
+      <div className="game-page">
         <Header />
-        <Score />
         {questions && questions.length && (
           <Question
             key={ stage }
@@ -123,7 +121,7 @@ class Game extends Component {
             nextQuestion={ this.nextQuestion }
           />
         )}
-      </>
+      </div>
     );
   }
 }

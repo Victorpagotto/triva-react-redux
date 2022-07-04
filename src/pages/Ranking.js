@@ -1,23 +1,24 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import RankingPlayers from '../Components/RankingPlayers';
+import '../CSS/rankingPage.css';
 
 class Ranking extends React.Component {
   render() {
     return (
-      <div>
-        <h1 data-testid="ranking-title">Ranking</h1>
+      <div className="ranking-page">
+        <h1 data-testid="ranking-title" className="ranking-title">Ranking</h1>
+        <div className="ranking-btn-container">
+          <Link to="/">
+            <button
+              type="button"
+              data-testid="btn-go-home"
+            >
+              Go home
+            </button>
+          </Link>
+        </div>
         <RankingPlayers />
-
-        <Link to="/">
-          <button
-            type="button"
-            data-testid="btn-go-home"
-          >
-            Go home
-          </button>
-        </Link>
-
       </div>
     );
   }
