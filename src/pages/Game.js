@@ -52,12 +52,6 @@ class Game extends Component {
             questions: perguntas,
           });
         }
-      })
-      .catch((error) => {
-        if (error.name === 'AbortError') {
-          return;
-        }
-        throw error;
       });
   }
 
