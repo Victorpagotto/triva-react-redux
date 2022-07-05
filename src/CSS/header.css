@@ -1,0 +1,37 @@
+.header-profile {
+  align-items: center;
+  background-color: #282c34;
+  color: white;
+  display: flex;
+  flex-flow: row-reverse nowrap;
+  font-family: 'Press Start 2P' , cursive;
+  justify-content: space-between;
+  padding: 20px 0;
+  width: 100%;
+}
+
+.profile-container {
+  align-items: center;
+  display: flex;
+  flex-flow: row-reverse nowrap;
+  font-size: 0.8em;
+  justify-content: center;
+  margin-right: 60px;
+}
+
+.profile-name {
+  line-height: 40px;
+  margin-left: 40px;
+  margin-right: 50px;
+  text-align: center;
+}
+
+.header-profile-img {
+  border: solid 5px white;
+  border-radius: 50%;
+}
+
+.profile-score {
+  font-size: 2em;
+  margin-left: 50px;
+}

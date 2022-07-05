@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
 import actions from '../3-actions';
-import '../CSS/AnswersStyle.css';
 import counterKit from '../0-Services/counterKit';
+import '../CSS/game.css';
+import '../CSS/AnswersStyle.css';
 
 const mapDispatchToProps = (dispatch) => ({
   addAssertions: () => dispatch(actions.addAssertion()),
@@ -27,6 +28,10 @@ class Question extends Component {
 
   componentDidMount() {
     counterKit.startControl(this);
+  }
+
+  componentWillUnmount() {
+    counterKit.pauseControl(this);
   }
 
   calculateScore = () => {
@@ -53,17 +58,24 @@ class Question extends Component {
   render() {
     const { ask, answers, nextQuestion } = this.props;
     const { styleFalse, styleTrue, timer, timeOut } = this.state;
+    const REDTIMER = 11;
     return (
-      <div>
-        <p data-testid="question-category">{ask.category}</p>
-        <p data-testid="question-text">{ask.question}</p>
-        <p>
-          Tempo Restante:
-          <span>
-            { timeOut ? 'over' : timer }
-          </span>
+      <div className="game-container">
+        <p
+          data-testid="question-category"
+          className="category-name"
+        >
+          {ask.category}
         </p>
-        <div data-testid="answer-options">
+        <p
+          className={ `${timer < REDTIMER || timeOut
+            ? 'timer-color-ending'
+            : 'timer-color-normal'} timer-text` }
+        >
+          { timeOut ? 'OVER' : timer }
+        </p>
+        <p data-testid="question-text" className="question-text">{ask.question}</p>
+        <div data-testid="answer-options" className="answer-list-container">
           {
             answers.map((option) => (
               <button
@@ -73,9 +85,9 @@ class Question extends Component {
                 onClick={ this.answerQuestion }
                 disabled={ timeOut }
                 className={
-                  option.isCorrect
+                  `${option.isCorrect
                     ? styleTrue
-                    : styleFalse
+                    : styleFalse} answer-container`
                 }
                 data-testid={
                   option.isCorrect
@@ -95,6 +107,7 @@ class Question extends Component {
               type="button"
               data-testid="btn-next"
               onClick={ () => nextQuestion() }
+              className="next-button"
             >
               Next
             </button>
