@@ -108,12 +108,13 @@ describe('testes da página Game', () => {
     const correctAnswer = screen.getByTestId('correct-answer');
     const wrongAnswer = screen.getByTestId('wrong-answer-0');
 
-    expect(correctAnswer).not.toHaveProperty('className', 'true');
-    expect(wrongAnswer).not.toHaveProperty('className', 'false');
+    expect(correctAnswer.className).not.toMatch('true');
+    expect(wrongAnswer.className).not.toMatch('false');
 
     userEvent.click(correctAnswer);
-    expect(correctAnswer).toHaveProperty('className', 'true');
-    expect(wrongAnswer).toHaveProperty('className', 'false');
+    
+    expect(correctAnswer.className).toMatch('true');
+    expect(wrongAnswer.className).toMatch('false');
   });
 
   test('Testa o score', async () => {
